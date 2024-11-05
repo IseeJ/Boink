@@ -43,7 +43,7 @@
             position: absolute;
             width: 100px; 
             bottom: 100%; 
-            animation: fall 1s forwards, walk 4s linear infinite; /* Falling and walking animation */
+            animation: fall 1s forwards, walk 4s linear infinite; 
         }
 
         @keyframes fall {
@@ -56,12 +56,22 @@
             50% { transform: translateX(100px); }
             100% { transform: translateX(0); } 
         }
+        footer {
+            position: absolute; 
+            bottom: 10px; 
+            text-align: center; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #666; 
+        }
     </style>
 </head>
 <body>
     <button id="fallButton">Press Me</button>
     <audio id="clickSound" src="click.mp3"></audio>
-
+    <footer>
+        <a href="https://github.com/IseeJ" target="_blank" style="font-size: 10px; text-decoration: none;">&copy; 2024 I-see Warisa Jaidee</a>
+    </footer>
     <script>
         document.getElementById('fallButton').addEventListener('click', function() {
             const clickSound = document.getElementById('clickSound');
