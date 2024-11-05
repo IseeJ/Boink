@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;700&display=swap">
+    <title>WAHAHAHAA</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        #fallButton {
+            font-family: 'Comfortaa', sans-serif;
+    background-color: #f46b6b;
+    color: #fff;
+    padding: 20px; 
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    font-size: 14px; 
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none; 
+    width: 100px; 
+    height: 100px; 
+    line-height: 1.5; 
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+
+        #fallButton:hover {
+            background-color: #bd2828;
+        }
+
+        .shimeji {
+            position: absolute;
+            width: 100px; 
+            bottom: 100%; 
+            animation: fall 1s forwards, walk 4s linear infinite; /* Falling and walking animation */
+        }
+
+        @keyframes fall {
+            0% { bottom: 100%; }
+            100% { bottom: 0; }
+        }
+
+        @keyframes walk {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(100px); }
+            100% { transform: translateX(0); } 
+        }
+    </style>
+</head>
+<body>
+    <button id="fallButton">Press Me</button>
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <script>
+        document.getElementById('fallButton').addEventListener('click', function() {
+            const clickSound = document.getElementById('clickSound');
+            clickSound.play(); 
+
+            const shimeji = document.createElement('img');
+            shimeji.src = 'wheyy.gif'; 
+            shimeji.classList.add('shimeji');
+            shimeji.style.left = Math.random() * (window.innerWidth - 100) + 'px'; 
+
+            document.body.appendChild(shimeji);
+
+            setInterval(() => {
+                shimeji.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
