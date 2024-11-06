@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;700&display=swap">
-    <link rel="icon" type="image/x-icon" href="icon.png">
     <title>WAHAHAHAA</title>
     <style>
         body {
@@ -19,21 +18,21 @@
 
         #fallButton {
             font-family: 'Comfortaa', sans-serif;
-    background-color: #f46b6b;
-    color: #fff;
-    padding: 20px; 
-    border: none;
-    border-radius: 50%; 
-    cursor: pointer;
-    font-size: 14px; 
-    margin-top: 10px;
-    display: inline-block;
-    text-decoration: none; 
-    width: 100px; 
-    height: 100px; 
-    line-height: 1.5; 
-    text-align: center; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            background-color: #f46b6b;
+            color: #fff;
+            padding: 20px; 
+            border: none;
+            border-radius: 50%; 
+            cursor: pointer;
+            font-size: 14px; 
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none; 
+            width: 100px; 
+            height: 100px; 
+            line-height: 1.5; 
+            text-align: center; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
         }
 
         #fallButton:hover {
@@ -42,9 +41,8 @@
 
         .shimeji {
             position: absolute;
-            width: 100px; 
             bottom: 100%; 
-            animation: fall 1s forwards, walk 4s linear infinite; 
+            animation: fall 1s forwards, walk 4s linear infinite; /* Falling and walking animation */
         }
 
         @keyframes fall {
@@ -57,6 +55,7 @@
             50% { transform: translateX(100px); }
             100% { transform: translateX(0); } 
         }
+
         footer {
             position: absolute; 
             bottom: 10px; 
@@ -66,25 +65,72 @@
             color: #666; 
         }
 
-        footer a{
+        footer a {
             color: #c3c2c2; 
         }
+
+        /* Toggle Switch Styling */
+        #randomToggle {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+
+        #randomToggle input {
+            margin-right: 10px;
+        }
+
     </style>
 </head>
 <body>
     <button id="fallButton">Press Me</button>
+
+    <div id="randomToggle">
+        <label for="randomToggleInput">Surprise Me</label>
+        <input type="checkbox" id="randomToggleInput">
+    </div>
+
     <audio id="clickSound" src="click.mp3"></audio>
+    
     <footer>
         <a href="https://github.com/IseeJ" target="_blank" style="text-decoration: none;">&copy; 2024 I-see Warisa Jaidee</a>
     </footer>
+
     <script>
+        let isRandomEnabled = false; 
+
+        
+        document.getElementById('randomToggleInput').addEventListener('change', function() {
+            isRandomEnabled = this.checked;
+        });
+
         document.getElementById('fallButton').addEventListener('click', function() {
             const clickSound = document.getElementById('clickSound');
             clickSound.play(); 
 
             const shimeji = document.createElement('img');
-            shimeji.src = 'wheyy.gif'; 
+            shimeji.src = 'Izeesites/siteIMG/izee.gif'; 
+            shimeji.alt = 'Shimeji';
             shimeji.classList.add('shimeji');
+
+           
+            if (isRandomEnabled) {
+                const randomSize = Math.random() * (150 - 50) + 50;
+                shimeji.style.width = randomSize + 'px';
+                shimeji.style.height = 'auto';
+
+            
+                shimeji.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            } else {
+            
+                shimeji.style.width = '100px';
+                shimeji.style.height = 'auto';
+                shimeji.style.filter = 'none';
+            }
+
+        
             shimeji.style.left = Math.random() * (window.innerWidth - 100) + 'px'; 
 
             document.body.appendChild(shimeji);
