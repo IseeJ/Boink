@@ -94,6 +94,7 @@
     </div>
 
     <audio id="clickSound" src="click.mp3"></audio>
+    <audio id="shimejiClickSound" src="flick.mp3"></audio>
     
     <footer>
         <a href="https://github.com/IseeJ" target="_blank" style="text-decoration: none;">&copy; 2024 I-see Warisa Jaidee</a>
@@ -137,6 +138,11 @@
             shimeji.addEventListener('click', function() {
                 const originalSrc = shimeji.src;
                 shimeji.src = 'whomp.gif';
+
+                const shimejiClickSound = document.getElementById('shimejiClickSound');
+                shimejiClickSound.currentTime = 0; 
+                shimejiClickSound.play();
+                
                 setTimeout(() => {
                     shimeji.src = originalSrc;
                 }, 900); 
