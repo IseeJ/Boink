@@ -101,44 +101,46 @@
 
     <script>
         let isRandomEnabled = false; 
-
-        
+    
         document.getElementById('randomToggleInput').addEventListener('change', function() {
             isRandomEnabled = this.checked;
         });
-
+        
+    
         document.getElementById('fallButton').addEventListener('click', function() {
             const clickSound = document.getElementById('clickSound');
             clickSound.play(); 
-
+    
             const shimeji = document.createElement('img');
             shimeji.src = 'wheyy.gif'; 
             shimeji.alt = 'Shimeji';
             shimeji.classList.add('shimeji');
-
-           
+    
             if (isRandomEnabled) {
                 const randomSize = Math.random() * (150 - 50) + 50;
                 shimeji.style.width = randomSize + 'px';
                 shimeji.style.height = 'auto';
-
-            
                 shimeji.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
             } else {
-            
                 shimeji.style.width = '100px';
                 shimeji.style.height = 'auto';
                 shimeji.style.filter = 'none';
             }
-
-        
+    
             shimeji.style.left = Math.random() * (window.innerWidth - 100) + 'px'; 
-
             document.body.appendChild(shimeji);
-
+    
             setInterval(() => {
                 shimeji.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             }, 4000);
+
+            shimeji.addEventListener('click', function() {
+                const originalSrc = shimeji.src;
+                shimeji.src = 'whomp.gif';
+                setTimeout(() => {
+                    shimeji.src = originalSrc;
+                }, 900); 
+            });
         });
     </script>
 </body>
